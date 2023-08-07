@@ -1,4 +1,3 @@
-const numbers = document.querySelector(".numbersdiv");
 const buttonValues = [7, 8, 9, "/", 4, 5, 6, "x",
                 1, 2, 3, "-", ".", 0, "=", "+"];
 
@@ -11,6 +10,9 @@ let currentOutput = "";
 let previousOperator = false;
 let operatorCount = 0;
 let result = "";
+
+const numbers = document.querySelector(".numbersdiv");
+const screen = document.querySelector(".screendiv");
 
 for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
@@ -27,7 +29,6 @@ for (let i = 0; i < 4; i++) {
 }
 
 function executeOrder(button) {
-    const screen = document.querySelector(".screendiv");
 
     switch (button.textContent) {
         case "+":
@@ -91,6 +92,10 @@ function executeOperation(a, b, c) {
     a = Number(a);
     c = Number(c);
 
+    if (b === "/" && c === 0) {
+        return "Error";
+    }
+    
     switch (b) {
         case "-":
             return a - c;
@@ -103,3 +108,16 @@ function executeOperation(a, b, c) {
     }
 }
 
+function clearCalculator() {
+    k = 0;
+    operator = "";
+    previousNum = 0;
+    currentNum = "";
+    resultNum = 0;
+    currentOutput = "";
+    previousOperator = false;
+    operatorCount = 0;
+    result = "";
+
+    screen.textContent = currentOutput;
+}

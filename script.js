@@ -54,7 +54,6 @@ keyboard event. This function is also called
 in "click" function for calculator buttons */
 
 function keyboardEvent(e) {
-    let result = "";
     if (e.key >= 0 && e.key <= 9) {
         executeOrder(e.key);
     }
@@ -124,6 +123,9 @@ function executeOrder(button) {
             break;
         case "=":
             resultNum = executeOperation(previousNum, operator, currentNum);
+            if (resultNum === undefined) {
+                resultNum = "";
+            }
             currentOutput = "";
             screen.textContent = resultNum;
             currentNum = resultNum;
@@ -170,16 +172,16 @@ function executeOperation(a, b, c) {
 // Reseting all the variables, clearing screen
 
 function clearCalculator() {
-    let k = 0;
-    let operator = "";
-    let previousNum = 0;
-    let currentNum = "";
-    let resultNum = 0;
-    let currentOutput = "";
-    let previousOperator = false;
-    let operatorCount = 0;
-    let result = "";
-    let pressedButton = "";
+    k = 0;
+    operator = "";
+    previousNum = 0;
+    currentNum = "";
+    resultNum = 0;
+    currentOutput = "";
+    previousOperator = false;
+    operatorCount = 0;
+    result = "";
+    pressedButton = "";
 
     screen.textContent = currentOutput;
 }
